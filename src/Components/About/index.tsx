@@ -9,17 +9,11 @@ import REDUX from "../../Assets/tech/redux.png";
 import TAILWIND from "../../Assets/tech/tailwind.png";
 import MONGODB from "../../Assets/tech/mongodb.png";
 import FIREBASE from "../../Assets/tech/firebase-logo.png";
-import PYTHON from "../../Assets/tech/python.png";
-import DJANGO from "../../Assets/tech/django.png";
-import ANGULAR from "../../Assets/tech/Angular-logo.png";
 import { TypeAnimation } from "react-type-animation";
 import { Fade } from "react-awesome-reveal";
 
 const skills = [
   REACTJS,
-  // ANGULAR,
-  // DJANGO,
-  // PYTHON,
   JS,
   REDUX,
   FIREBASE,
@@ -81,8 +75,8 @@ function About() {
         <Fade cascade direction="up" delay={0.1} triggerOnce>
           {skills.map((item, key) => {
             return (
-              <div>
-                <Skills key={`skill${key}`} skill={item} id={key} />
+              <div key={`skill${key}`}>
+                <Skills skill={item} />
               </div>
             );
           })}

@@ -21,7 +21,18 @@ const WorkIcon = () => {
   );
 };
 
-function ProjectCard(props) {
+type ProjectCardProps = {
+  props: {
+    title: string;
+    description: string;
+    link: string;
+    image: string;
+    tech: string[];
+    gitLink: string;
+  };
+};
+
+function ProjectCard(props: ProjectCardProps) {
   const { title, description, link, image, tech, gitLink } = props.props;
   return (
     <VerticalTimelineElement

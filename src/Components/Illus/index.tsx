@@ -1,5 +1,3 @@
-import React from "react";
-
 function Illus() {
   return (
     <div className="w-full lg:w-1/2">

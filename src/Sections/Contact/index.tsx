@@ -17,20 +17,24 @@ function Contact() {
   const form = useRef(null);
   const [sendResult, setSendResult] = useState(false);
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (
+    _values: { name: string; email: string; message: string },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
+  ) => {
     emailjs
       .sendForm(
         import.meta.env.REACT_APP_SERVICE_ID,
         import.meta.env.REACT_APP_TEMPLATE_ID,
-        form.current,
+        // form.current,
         import.meta.env.REACT_APP_PUBLIC_KEY
       )
       .then(
         (result) => {
-          // console.log(result.text);
+          console.log(result.text);
         },
         (error) => {
-          // console.log(error.text);
+          console.log(error.text);
         }
       );
     setTimeout(() => {
