@@ -18,7 +18,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Artifact Dist
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist
@@ -28,14 +28,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: dist
-        #   upload to artifact to dist branch
-      - name: Upload to Dist Branch
-        uses: actions/checkout@v2
-        with:
-          ref: dist
       - name: Deploy
         run: |
           git config --global user.email "gorbadil@gmail.com"
