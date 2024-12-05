@@ -10,6 +10,7 @@ jobs:
   uploadToVPS:
     name: Upload to VPS
     runs-on: ubuntu-latest
+    steps:
       - name: Connect with VPS
         uses: appleboy/ssh-action@master
         with:
