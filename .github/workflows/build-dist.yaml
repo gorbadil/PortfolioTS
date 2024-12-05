@@ -1,9 +1,9 @@
 name: Build Dist Branch
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  # branches:
+  # - main
   workflow_dispatch:
 
 jobs:
@@ -23,19 +23,18 @@ jobs:
           name: dist
           path: dist
 
-  deploybranch:
+  uploadToVPS:
     needs: build
-    name: Deploy to Dist Branch
+    name: Upload to VPS
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           name: dist
-      - name: Deploy
-        run: |
-          git config --global user.email "gorbadil@gmail.com"
-          git config --global user.name "gorbadil"
-          git add .
-          git commit -m "Deploy to dist branch"
-          git push origin dist
+      - name: Connect SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Upload to VPS
+        run: scp -r dist ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
