@@ -1,4 +1,4 @@
-name: Build Dist Branch
+name: Try To Connect
 
 on:
   # push:
