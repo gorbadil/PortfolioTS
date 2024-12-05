@@ -1,0 +1,24 @@
+name: Build Dist Branch
+
+on:
+  # push:
+  # branches:
+  # - main
+  workflow_dispatch:
+
+jobs:
+  uploadToVPS:
+    name: Upload to VPS
+    runs-on: ubuntu-latest
+      - name: Connect with VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          # script: |
+          #   scp -r dist ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+          script: | 
+              whoami
+              ls -la
