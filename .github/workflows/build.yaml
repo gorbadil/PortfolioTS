@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  test-job:
     name: Testing Variables
     runs-on: ubuntu-latest
     steps:
