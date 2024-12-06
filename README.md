@@ -17,14 +17,27 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+# Automated CI/CD
+
+- Create new empty branch with no history. Branch name will be your subdomain name.
+
+```bash
+git checkout --orphan <branch-name>
+```
+
+- Use Reusable Github Actions Workflow your own repository.
+- Create a new file in `.github/workflows/` directory with the name `deploy.yml`.
+- Copy the content of the file `.github/workflows/deploy.yml` to your newly created file.
+- Commit and push the changes to the repository.

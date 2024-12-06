@@ -5,7 +5,7 @@ function AboutMe() {
   return (
     <div id="about-me" className=" xl:p-0">
       <h3 className="w-screen text-center text-4xl text-shadows-100 pt-24 font-bold pb-4">
-        About Me
+        Much More About Me
       </h3>
       <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-36 p-12">
         <img
