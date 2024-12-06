@@ -35,13 +35,22 @@ jobs:
       - name: Unzip Artifact
         run: |
           ls -la
-      - name: Connect with VPS
-        uses: appleboy/ssh-action@master
+      # - name: Connect with VPS
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USERNAME }}
+      #     key: ${{ secrets.KEY }}
+      #     port: ${{ secrets.PORT }}
+      #     script: |
+      #       ls -l
+      #       scp -r * ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.SSH_PATH }}
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script: |
-            ls -l
-            scp -r * ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.SSH_PATH }}
+          key: ${{ secrets.KEY }}
+          source: "**/*"
+          target: ${{ secrets.SSH_PATH }}
