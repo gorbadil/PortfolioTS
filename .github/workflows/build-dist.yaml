@@ -32,6 +32,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
+      - name: Unzip Artifact
+        run: |
+          unzip dist.zip
+          rm dist.zip
+          ls -la
       - name: Connect with VPS
         uses: appleboy/ssh-action@master
         with:
@@ -40,4 +45,4 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            scp -r dist ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.SSH_PATH }}
+            scp -r dist/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.SSH_PATH }}
