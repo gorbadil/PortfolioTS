@@ -65,10 +65,7 @@ function About() {
           </div>
         </div>
         <p className="lg:w-full w-9/12 mt-24 lg:mt-12 lg:text-left tracking-widest px-6 md:px-0 text-xl text-shadows-100 font-bold relative lg:bottom-24">
-          Self learner and passionate about web development. I love to learn
-          about new technologies and improve myself. I am a team player and
-          always ready to learn new things. I am currently looking for a
-          full-time job opportunity.
+          Self learner and passionate about DevOps
         </p>
       </div>
       <div className="flex justify-center items-center flex-wrap gap-12 lg:mt-0 mt-8 lg:w-full w-11/12">

@@ -35,7 +35,7 @@ jobs:
       - name: Unzip Artifact
         run: |
           ls -la
-      - name: Connect with VPS
+      - name: Create Nginx Conf
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -44,7 +44,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             /home/ersinm/envDockerVolumes/nginx/create_nginx_conf.sh main
-      - name: copy file via ssh password
+      - name: Send Files via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
