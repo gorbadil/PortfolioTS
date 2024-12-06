@@ -1,52 +1,59 @@
 name: Build Test Branch
 
 on:
-  push:
-    branches:
-      - test
+  # push:
+  #   branches:
+  #     - test
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build Project
+  test:
+    name: Testing Variables
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Upload Artifact Dist Folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist
+      - name: Test Variables
+        run: |
+          echo "HOST: ${{ github }}"
+  # build:
+  #   name: Build Project
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Install Dependencies
+  #       run: npm install
+  #     - name: Build
+  #       run: npm run build
+  #     - name: Upload Artifact Dist Folder
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: dist
+  #         path: dist
 
-  uploadToVPS:
-    needs: build
-    name: Deploy Project
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-      - name: Create Nginx Conf
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            /home/ersinm/envDockerVolumes/nginx/create_nginx_conf.sh test
-      - name: Send Files via SCP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          port: ${{ secrets.PORT }}
-          key: ${{ secrets.KEY }}
-          source: "*"
-          target: ${{ secrets.SSH_PATH }}/test.${{ secrets.HOST}}
+  # uploadToVPS:
+  #   needs: build
+  #   name: Deploy Project
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download Artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: dist
+  #     - name: Create Nginx Conf
+  #       uses: appleboy/ssh-action@master
+  #       with:
+  #         host: ${{ secrets.HOST }}
+  #         username: ${{ secrets.USERNAME }}
+  #         key: ${{ secrets.KEY }}
+  #         port: ${{ secrets.PORT }}
+  #         script: |
+  #           /home/ersinm/envDockerVolumes/nginx/create_nginx_conf.sh test
+  #     - name: Send Files via SCP
+  #       uses: appleboy/scp-action@v0.1.7
+  #       with:
+  #         host: ${{ secrets.HOST }}
+  #         username: ${{ secrets.USERNAME }}
+  #         port: ${{ secrets.PORT }}
+  #         key: ${{ secrets.KEY }}
+  #         source: "*"
+  #         target: ${{ secrets.SSH_PATH }}/test.${{ secrets.HOST}}
