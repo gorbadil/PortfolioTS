@@ -1,9 +1,9 @@
 name: Build Test Branch
 
 on:
-  # push:
-  #   branches:
-  #     - test
+  push:
+    branches:
+      - test
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Test Variables
         run: |
-          echo "HOST: ${{ github }}"
+          echo "HOST: ${{ github.action_ref }}"
   # build:
   #   name: Build Project
   #   runs-on: ubuntu-latest
