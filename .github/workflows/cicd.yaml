@@ -3,7 +3,7 @@ name: Build Resume Branch
 on:
   push:
     branches:
-      - resume
+      - chat
   workflow_dispatch:
 
 jobs:
