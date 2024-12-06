@@ -34,8 +34,6 @@ jobs:
           name: dist
       - name: Unzip Artifact
         run: |
-          unzip dist.zip
-          rm dist.zip
           ls -la
       - name: Connect with VPS
         uses: appleboy/ssh-action@master
