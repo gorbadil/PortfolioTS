@@ -16,10 +16,10 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
           # script: |
-          #   scp -r dist ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
-          script: | 
-              whoami
-              ls -la
+          #   scp -r dist ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.SSH_PATH }}
+          script: |
+            whoami
+            ls -la
