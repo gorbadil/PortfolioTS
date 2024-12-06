@@ -52,4 +52,4 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
           source: "*"
-          target: ${{ secrets.SSH_PATH }}/main/${{ secrets.HOST}}
+          target: ${{ secrets.SSH_PATH }}/${{ secrets.HOST}}
