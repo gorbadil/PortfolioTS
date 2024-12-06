@@ -13,7 +13,11 @@ jobs:
     steps:
       - name: Test Variables
         run: |
-          echo "HOST: ${{ github.action_ref }}"
+          echo "Ref: ${{ github.action_ref }}"
+          echo "Ref inside github: ${{ github.ref }}"
+          echo "Ref inside json: ${{ toJson(github.action_ref) }}"
+          echo "Github Context: ${{ toJson(github) }}"
+          echo "Github Event: ${{ toJson(github.event) }}"
   # build:
   #   name: Build Project
   #   runs-on: ubuntu-latest
