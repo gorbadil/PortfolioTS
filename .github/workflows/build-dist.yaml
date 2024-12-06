@@ -52,5 +52,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
-          source: "**/*"
+          source: "*"
           target: ${{ secrets.SSH_PATH }}
