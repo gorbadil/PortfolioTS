@@ -1,0 +1,59 @@
+name: Build Resume Branch
+
+on:
+  push:
+    branches:
+      - resume
+  workflow_dispatch:
+
+jobs:
+  test-job:
+    name: Testing Variables
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Variables
+        run: |
+          echo "Ref inside github: ${{ github.ref_name }}"
+  build:
+    name: Build Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Artifact Dist Folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  uploadProject:
+    needs: build
+    name: Deploy Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+      - name: Create Nginx Conf
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            /home/ersinm/envDockerVolumes/nginx/create_nginx_conf.sh ${{github.ref_name}}
+      - name: Send Files via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.KEY }}
+          source: "*"
+          target: ${{ secrets.SSH_PATH }}/${{github.ref_name}}.${{ secrets.HOST}}
