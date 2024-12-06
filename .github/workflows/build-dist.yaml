@@ -1,9 +1,9 @@
 name: Build Dist Branch
 
 on:
-  # push:
-  # branches:
-  # - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -38,9 +38,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          # script: |
-          #   scp -r dist ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+          port: ${{ secrets.PORT }}
           script: |
-            whoami
-            ls -la
+            scp -r dist ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.SSH_PATH }}

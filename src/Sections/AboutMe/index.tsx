@@ -20,7 +20,7 @@ function AboutMe() {
             decided to switch gears and pursue a career as a Web Developer.
             During this process, I've learned essential skills like HTML, CSS,
             and JavaScript, and I've also delved deeper into the{" "}
-            <span className="font-bold">React </span> 
+            <span className="font-bold">React </span>
             framework. I've even completed projects related to{" "}
             <span className="font-bold"> Chat App </span>,
             <span className="font-bold">e-Commerce</span> and{" "}
