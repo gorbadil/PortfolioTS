@@ -1,0 +1,13 @@
+name: Test Github Variables
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Testing Variables
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Variables
+        run: |
+          echo "HOST: ${{ github }}"
